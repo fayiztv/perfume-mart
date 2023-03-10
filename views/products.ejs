@@ -1,0 +1,330 @@
+<%- include('userHead') %>
+
+<body style="background-color: rgba(0, 0, 0, 0.212)">
+  <!-- Header Section Begin -->
+
+  <header
+    style="background-color: rgb(202, 202, 202)"
+    class="main_menu home_menu"
+  >
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span><i></i></span>
+            </button>
+            <img
+              style="height: 40px; width: 40px; margin-bottom: 20px"
+              src="/assetsuser/img/logo-removebg-preview.png"
+              alt=""
+            />
+            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif">
+              P Mart
+            </h4>
+            <div
+              class="collapse navbar-collapse main-menu-item"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/products">Products</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">about</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="hearer_icon d-flex align-items-center">
+              <a href="/logout">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="log-out-outline"
+                ></ion-icon>
+              </a>
+              <a href="/cart">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="cart-outline"
+                ></ion-icon>
+              </a>
+              <a href="/profile">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="person-circle-outline"
+                ></ion-icon>
+              </a>
+
+              <a href="/whishlist">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="heart-outline"
+                ></ion-icon>
+              </a>
+              <span class="ml-1"> </span>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="search_input" id="search_input_box">
+      <div class="container">
+        <form class="d-flex justify-content-between search-inner">
+          <input
+            type="text"
+            class="form-control"
+            id="search_input"
+            placeholder="Search Here"
+          />
+          <button type="submit" class="btn"></button>
+          <span class="ti-close" id="close_search" title="Close Search"></span>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- Header Section End -->
+
+  <!-- Shop Section Begin -->
+  <section class="shop spad">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="shop__sidebar">
+            <div class="shop__sidebar__search">
+              <form role="search" method="post" action="/search-product">
+                <input
+                  type="search"
+                  name="name"
+                  placeholder="Search"
+                  style="border-radius: 10px"
+                />
+                <button type="submit"><span class="icon_search"></span></button>
+              </form>
+            </div>
+            <div class="shop__sidebar__accordion">
+              <div class="accordion" id="accordionExample">
+
+                <div class="single_sedebar mb-2">
+                  <div class="select_option">
+                      <div class="select_option_list">Category</div>
+                  </div>
+              </div>
+
+                <form action="/filter-product" method="get">
+                  <label for="SortBy" class="hidden"></label>
+
+                  <select
+                    name="filterBy"
+                    id="SortBy"
+                    class="filters-toolbar_input filters-toolbar_input--sort"
+                  >
+                    <option value="title-ascending" selected="selected">
+                      filter
+                    </option>
+                    <% if (typeof categories !== "undefined") { %> <%
+                    categories.forEach(item=>{ %> <% if(item.status ==
+                    "available"){ %>
+                    <option value="<%= item.category %>">
+                      <%= item.category %>
+                    </option>
+                    <% } %> <% }) %> <% } %>
+                  </select>
+
+                  <button type="submit" class="btn btn-secondary btn--small">
+                    Filter
+                  </button>
+                </form>
+
+                <div class="single_sedebar mt-5">
+                  <div class="select_option">
+                      <div class="select_option_list">Price</div>
+                  </div>
+              </div>
+                <div  class="single_sedebar" style="margin-top: 5px">
+                  <form  action="/sort-product" method="get">
+                    <label for="SortBy" id="SortBy"></label>
+
+                    <select name="SortBy" class="select_option" id="">
+                      <option value="sort">sort</option>
+                      <option value="low-high">low to high</option>
+                      <option value="high-low">high-low</option>
+                    </select>
+                    <button type="submit" class="btn btn-secondary btn--small">
+                    Sort
+                  </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="row">
+            <% products.forEach(item=>{ %> <% if(item.status == "available"){ %>
+            <div class="col-lg-4 col-sm-4">
+              <div class="single_product_item" style="margin: 5px">
+                <a href="/single-product/<%= item._id %>">
+                  <img
+                    style="width: 250px; height: 270px; border-radius: 1px"
+                    src="http://localhost:2222/product-images/<%= item.mainImage.filename%>"
+                    class="img-fluid"
+                /></a>
+                <h5 style="margin: 5px; color: black"><%= item.name %></h5>
+
+                <p style="margin-left: 5px; font-weight: bolder; color: black">
+                  ₹<%= item.price %>
+                  <a style="margin-left: 20px" href="/addto-cart/<%=item._id%>"
+                    ><i
+                      style="color: #000000"
+                      class="flaticon-shopping-cart-black-shape"
+                    ></i>
+                  </a>
+                </p>
+              </div>
+            </div>
+            <% } %> <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Shop Section End -->
+
+  <!-- Footer Section Begin -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="footer__about">
+            <div style="display: flex;flex-direction: row;align-items: center;" class="footer__logo">
+              <img
+              style="height: 40px; width: 40px; margin-bottom: 20px"
+              src="/assetsuser/img/logo-removebg-preview.png"
+              alt=""
+            />
+            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif;color: aliceblue;">
+              P Mart
+            </h4>
+            </div>
+            <p>
+              The customer is at the heart of our unique business model, which
+              includes design.
+            </p>
+            <a href="#"
+              ><img src="/assestsmalefashion/img/payment.png" alt=""
+            /></a>
+          </div>
+        </div>
+        <div class="col-lg-4 offset-lg-1 col-md-3 col-sm-6">
+          <div class="footer__widget">
+            <h6>Shopping</h6>
+            <ul>
+              <li><a href="#">perfums</a></li>
+              <li><a href="#">Trending </a></li>
+
+              <li><a href="#">Sale</a></li>
+              <li><a href="#">Sale</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+          <div class="footer__widget">
+            <h6>NewLetter</h6>
+            <div class="footer__newslatter">
+              <p>
+                Be the first to know about new arrivals, look books, sales &
+                promos!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="footer__copyright__text">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <p>
+              | Copyright ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved |
+            </p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer Section End -->
+
+  <!-- Js Plugins -->
+
+  <script src="/assestsmalefashion/js/jquery-3.3.1.min.js"></script>
+  <script src="/assestsmalefashion/js/bootstrap.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.nice-select.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.nicescroll.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.magnific-popup.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.countdown.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.slicknav.js"></script>
+  <script src="/assestsmalefashion/js/mixitup.min.js"></script>
+  <script src="/assestsmalefashion/js/owl.carousel.min.js"></script>
+  <script src="/assestsmalefashion/js/main.js"></script>
+
+  <script src="/assetsuser/js/slick.min.js"></script>
+  <script src="/assetsuser/js/jquery.counterup.min.js"></script>
+  <script src="/assetsuser/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/assetsuser/js/custom.js"></script>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+</body>
+
+<%- include('footer') %>

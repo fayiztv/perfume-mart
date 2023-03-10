@@ -1,0 +1,268 @@
+<%- include('userHead') %>
+<link rel="stylesheet" href="/assetsuser/css/Checkout.css" />
+
+<body style="background-color: rgba(0, 0, 0, 0.137)">
+  <!--::header part start::-->
+  <header
+    style="background-color: rgb(202, 202, 202)"
+    class="main_menu home_menu"
+  >
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span><i></i></span>
+            </button>
+            <img
+              style="height: 40px; width: 40px; margin-bottom: 20px"
+              src="/assetsuser/img/logo-removebg-preview.png"
+              alt=""
+            />
+            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif">
+              P Mart
+            </h4>
+
+            <div
+              class="collapse navbar-collapse main-menu-item"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/products">Products</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">about</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="hearer_icon d-flex align-items-center">
+              <a href="/logout">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="log-out-outline"
+                ></ion-icon>
+              </a>
+              <a href="/cart">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="cart-outline"
+                ></ion-icon>
+              </a>
+              <a href="/profile">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="person-circle-outline"
+                ></ion-icon>
+              </a>
+
+              <a href="/whishlist">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="heart-outline"
+                ></ion-icon>
+              </a>
+              <span class="ml-1"> </span>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+      <div class="d-flex flex-row align-items-center">
+        <h4 class="text-uppercase mt-1">Checkout</h4>
+      </div>
+      <a href="/cart" class="cancel com-color"
+        ><button class="btn btn-dark w-100">Cancel</button></a
+      >
+    </div>
+    <form action="/checkout" method="post">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="about">
+            <b class="text-dark">Choose Address</b>
+            <% user.address.forEach((item,index)=>{ %>
+            <label
+              class="p-2 d-flex justify-content-between bg-pay mt-2"
+              for="<%=item.id%>"
+            >
+              <div class="col-10 d-flex flex-column">
+                <span
+                  ><b
+                    style="
+                      color: rgba(0, 0, 0, 0.836);
+                      font-family: Georgia, 'Times New Roman', Times, serif;
+                    "
+                    >Name : <%=item.name%></b
+                  ><br
+                /></span>
+                <span
+                  ><b
+                    style="
+                      color: rgba(0, 0, 0, 0.836);
+                      font-family: Georgia, 'Times New Roman', Times, serif;
+                    "
+                    >Mobile : <%=item.mobile%></b
+                  ><br
+                /></span>
+                <span
+                  ><b
+                    style="
+                      color: rgba(0, 0, 0, 0.836);
+                      font-family: Georgia, 'Times New Roman', Times, serif;
+                    "
+                    >City : <%=item.city%></b
+                  ></span
+                >
+                <span
+                  ><b
+                    style="
+                      color: rgba(0, 0, 0, 0.836);
+                      font-family: Georgia, 'Times New Roman', Times, serif;
+                    "
+                    >pincode : <%=item.pincode%></b
+                  ></span
+                >
+              </div>
+              <div
+                class="col-2 d-flex justify-content-center align-items-center"
+              >
+                <input
+                  type="radio"
+                  id="<%=item.id%>"
+                  name="address"
+                  value="<%=item.id %>"
+                  required
+                />
+              </div>
+            </label>
+            <% }) %>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <b class="text-dark">Choose Payment Method</b>
+          <div class="bg-pay p-3 mt-2">
+            <span class="font-weight-bold">Payment Method</span>
+            <label class="d-flex justify-content-between mt-2" for="online">
+              <span class="fw-500">Online Payment</span>
+              <span
+                ><input
+                  type="radio"
+                  name="payment"
+                  id="online"
+                  value="online"
+                  required
+              /></span>
+            </label>
+            <label class="d-flex justify-content-between mt-2" for="cod">
+              <span class="fw-500">Cash on delivery</span>
+              <span
+                ><input type="radio" name="payment" id="cod" value="cod"
+              /></span>
+            </label>
+            <ul>
+              <h5>
+                Total
+                <span style="margin-left: 190px; color: rgb(0, 0, 0)" id="price"
+                  ><%=totalPrice %></span
+                >
+              </h5>
+            </ul>
+            <div class="cart__discount mt-4"></div>
+            <hr />
+            <button class="btn btn-dark w-100" type="submit">
+              Place Orders
+            </button>
+          </div>
+        </div>
+        <input
+          type="hidden"
+          id="hiddenPrice"
+          name="total"
+          placeholder=""
+          value="<%=totalPrice %>"
+        />
+      </div>
+    </form>
+    <form action="#">
+      <input type="text" id="code" placeholder="Coupon code" />
+      <button class="ml-1" onclick="couponCheck('<%=totalPrice %>')">
+        Apply
+      </button>
+    </form>
+  </div>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
+  <script>
+    async function couponCheck(total) {
+      let code = document.getElementById("code").value;
+      const response = await axios.get("/couponCheck/" + code + "/" + total);
+      console.log(response);
+
+      if (response.data.success == true) {
+        let price = document.getElementById("price");
+        let hiddenPrice = document.getElementById("hiddenPrice");
+        price.textContent = response.data.subTotal;
+        hiddenPrice.value = response.data.subTotal;
+      } else {
+        console.log("failed");
+      }
+    }
+  </script>
+</body>
+
+<%- include('footer') %>

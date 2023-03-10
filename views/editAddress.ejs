@@ -1,0 +1,282 @@
+<%- include('userHead') %>
+
+<body style="background-color: rgba(0, 0, 0, 0.137)">
+  <!--::header part start::-->
+  <header
+    style="background-color: rgb(202, 202, 202)"
+    class="main_menu home_menu"
+  >
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span><i></i></span>
+            </button>
+            <img
+              style="height: 40px; width: 40px; margin-bottom: 20px"
+              src="/assetsuser/img/logo-removebg-preview.png"
+              alt=""
+            />
+            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif">
+              P Mart
+            </h4>
+
+            <div
+              class="collapse navbar-collapse main-menu-item"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/products">Products</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">about</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="hearer_icon d-flex align-items-center">
+              <a href="/logout">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="log-out-outline"
+                ></ion-icon>
+              </a>
+              <a href="/cart">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="cart-outline"
+                ></ion-icon>
+              </a>
+              <a href="/profile">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="person-circle-outline"
+                ></ion-icon>
+              </a>
+
+              <a href="/whishlist">
+                <ion-icon
+                  style="
+                    height: 25px;
+                    width: 25px;
+                    margin-left: 30px;
+                    margin-top: 2px;
+                    color: black;
+                  "
+                  name="heart-outline"
+                ></ion-icon>
+              </a>
+              <span class="ml-1"> </span>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="search_input" id="search_input_box">
+      <div class="container">
+        <form class="d-flex justify-content-between search-inner">
+          <input
+            type="text"
+            class="form-control"
+            id="search_input"
+            placeholder="Search Here"
+          />
+          <button type="submit" class="btn"></button>
+          <span class="ti-close" id="close_search" title="Close Search"></span>
+        </form>
+      </div>
+    </div>
+  </header>
+  <div style="margin-top: 5px; display: flex; justify-content: center">
+    <h1
+      style="
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+      "
+    >
+      Edit address
+    </h1>
+  </div>
+
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(218, 218, 218);
+    "
+    class="container rounded mt-0 mb-5"
+  >
+    <div style="width: 50vw; background-color: rgb(218, 218, 218)">
+      <div style="width: 50vw; padding: 30px">
+        <form id="editAddressForm" action="/edit-address" method="post">
+          <input
+            type="text"
+            name="id"
+            value="<%=address.id %>"
+            style="height: 0; visibility: hidden"
+          />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control p_input"
+                  value="<%=address.name %>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Mobile</label>
+                <input
+                  type="text"
+                  name="mobile"
+                  class="form-control p_input"
+                  maxlength="10"
+                  value="<%=address.mobile %>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Village</label>
+                <input
+                  type="text"
+                  name="village"
+                  class="form-control p_input"
+                  value="<%=address.village %>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Land Mark</label>
+                <input
+                  type="text"
+                  name="landmark"
+                  class="form-control p_input"
+                  value="<%=address.landmark%>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>House name</label>
+                <input
+                  type="text"
+                  name="housename"
+                  class="form-control p_input"
+                  value="<%=address.housename %>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>City</label>
+                <input
+                  type="text"
+                  name="city"
+                  class="form-control p_input"
+                  value="<%=address.city %>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Pin code</label>
+                <input
+                  type="text"
+                  name="pincode"
+                  class="form-control p_input"
+                  value="<%=address.pincode %>"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-block enter-btn">
+              Edit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div style="background-color: black; margin-top: 143px">.</div>
+
+  <script src="/assestsmalefashion/js/jquery-3.3.1.min.js"></script>
+  <script src="/assestsmalefashion/js/bootstrap.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.nice-select.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.nicescroll.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.magnific-popup.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.countdown.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.slicknav.js"></script>
+  <script src="/assestsmalefashion/js/mixitup.min.js"></script>
+  <script src="/assestsmalefashion/js/owl.carousel.min.js"></script>
+  <script src="/assestsmalefashion/js/main.js"></script>
+
+  <script src="/assetsuser/js/slick.min.js"></script>
+  <script src="/assetsuser/js/jquery.counterup.min.js"></script>
+  <script src="/assetsuser/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/assetsuser/js/custom.js"></script>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+</body>

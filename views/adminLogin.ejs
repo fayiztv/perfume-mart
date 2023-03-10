@@ -1,0 +1,51 @@
+<%- include('adminHead') %>
+
+<body>
+  <div
+    style="
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <div
+      class="container-fluid d-flex flex-column justify-content-center align-items-center login-main"
+    >
+      <form class="login-container" method="post" action="/admin/login">
+        <h2>Admin Login</h2>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input
+            type="email"
+            class="form-control login-input"
+            id="exampleInputEmail1"
+            name="email"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control login-input"
+            name="password"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <% if (typeof err !== "undefined") { %>
+        <p style="color: rgb(255, 255, 255); margin-left: 20px"><%= err %></p>
+        <% } %> <% if (typeof error !== "undefined") { %>
+        <p style="color: rgb(255, 255, 255); margin-left: 20px"><%= error %></p>
+        <% } %>
+        <button type="submit" class="btn btn-primary login-btn">Submit</button>
+        <div class="container d-flex justify-content-center mt-3"></div>
+      </form>
+    </div>
+  </div>
+</body>
+
+<%- include('footer') %>

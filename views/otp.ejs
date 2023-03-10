@@ -1,0 +1,95 @@
+<%- include('userHead') %>
+
+<body style="background-color: rgb(22, 22, 22)">
+  <div
+    class="container height-100 d-flex justify-content-center align-items-center"
+  >
+    <div class="position-relative">
+      <form action="/otp" method="post">
+        <div
+          style="background-color: rgb(182, 182, 182)"
+          class="card p-2 text-center"
+        >
+          <h6>Please enter the otp</h6>
+          <div>
+            <span style="color: rgb(0, 0, 0)"
+              >A otp has been sent to your email
+            </span>
+          </div>
+          <input
+            type="text"
+            name="email"
+            style="height: 0px; visibility: hidden"
+            value="<%= user?.email %>"
+          />
+          <input
+            type="text"
+            name="mobile"
+            style="height: 0px; visibility: hidden"
+            value="<%= user?.mobile %>"
+          />
+          <input
+            type="text"
+            name="password"
+            style="height: 0px; visibility: hidden"
+            value="<%= user?.password %>"
+          />
+          <input
+            type="text"
+            name="name"
+            style="height: 0px; visibility: hidden"
+            value="<%= user?.name %>"
+          />
+          <div
+            id="otp"
+            class="inputs d-flex flex-row justify-content-center mt-2"
+          >
+            <input
+              class="m-2 text-center form-control rounded"
+              style="width: 150px"
+              placeholder="OTP"
+              name="otp"
+              type="text"
+              maxlength="4"
+              required
+            />
+          </div>
+          <div class="mt-4">
+            <button class="btn btn-danger px-4 validate" type="submit">
+              submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- jquery plugins here-->
+  <script src="/assetsuser/js/jquery-1.12.1.min.js"></script>
+  <!-- popper js -->
+  <script src="/assetsuser/js/popper.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="/assetsuser/js/bootstrap.min.js"></script>
+  <!-- easing js -->
+  <script src="/assetsuser/js/jquery.magnific-popup.js"></script>
+  <!-- swiper js -->
+  <script src="/assetsuser/s/swiper.min.js"></script>
+  <!-- swiper js -->
+  <script src="/assetsuser/js/mixitup.min.js"></script>
+  <!-- particles js -->
+  <script src="/assetsuser/js/owl.carousel.min.js"></script>
+  <script src="/assetsuser/js/jquery.nice-select.min.js"></script>
+  <!-- slick js -->
+  <script src="/assetsuser/js/slick.min.js"></script>
+  <script src="/assetsuser/js/jquery.counterup.min.js"></script>
+  <script src="/assetsuser/js/waypoints.min.js"></script>
+  <script src="/assetsuser/js/contact.js"></script>
+  <script src="/assetsuser/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/assetsuser/js/jquery.form.js"></script>
+  <script src="/assetsuser/js/jquery.validate.min.js"></script>
+  <script src="/assetsuser/js/mail-script.js"></script>
+  <!-- custom js -->
+  <script src="/assetsuser/js/custom.js"></script>
+</body>
+
+<%- include('footer') %>

@@ -1,0 +1,98 @@
+<%- include('userHead') %>
+
+<body style="background-color: rgba(0, 0, 0, 0.137)">
+  <!--::header part start::-->
+
+  <div
+    style="background-color: rgb(46, 46, 46); width: 100vw; height: 50px"
+  ></div>
+
+  <section class="mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 p-b-30">
+          <div class="p-l-25 p-r-30 p-lr-0-lg">
+            <div class="wrap-slick3 flex-sb flex-w">
+              <div class="wrap-slick3-dots"></div>
+              <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+              <div class="slick3 gallery-lb">
+                <div
+                  class="item-slick3"
+                  data-thumb="/product-images/{{ product._id }}.jpg"
+                >
+                  <div class="wrap-pic-w pos-relative">
+                    <img
+                      style="width: 500px; height: 500px"
+                      src="http://localhost:2222/product-images/<%=order.orderItems.mainImage.filename%>"
+                      alt="IMG-PRODUCT"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-5 p-b-30">
+          <div class="p-r-50 p-t-5 p-lr-0-lg">
+            <h3 class="mtext-105 cl2 js-name-detail p-b-14">
+              <%=order.orderItems.name %>
+            </h3>
+            <h5 class="mtext-105 cl2 js-name-detail p-b-14">
+              <%=order.orderItems.category %>
+            </h5>
+            <h6 class="mtext-106 cl2">RS: <%=order.orderItems.price %></h6>
+            <h6 class="mtext-106 cl2">Qty: <%=order.orderItems.quantity %></h6>
+
+            <p>Payment Method : <%=order.paymentType %></p>
+            <p>OrderStatus : <%=order.status %></p>
+
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <%=order.status %>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a
+                  class="dropdown-item"
+                  href="/admin/pending-admin-order/<%=order._id %>"
+                  >Pending</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="/admin/cancel-admin-order/<%=order._id %>"
+                  >Cancelled</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="/admin/ship-order/<%=order._id %>"
+                  >Shipped</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="/admin/deliver-order/<%=order._id %>"
+                  >Delivered</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+</body>
