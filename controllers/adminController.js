@@ -779,9 +779,9 @@ module.exports = {
   postaddBanner: async (req, res) => {
     try {
 
-      let main_image = req.files.image[0];
+      let image = req.files.image[0];
       
-      let imageFile = await cloudinary.uploader.upload(main_image.path, {
+      let imageFile = await cloudinary.uploader.upload(image.path, {
         folder: "p-mart",
       });
       let bannerimage = imageFile;

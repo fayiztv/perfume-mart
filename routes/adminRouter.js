@@ -66,7 +66,6 @@ router.get("/add-banner", controller.getaddBanner);
 router.post(
   "/add-banner",
   upload.fields([
-    { name: "images", maxCount: 5 },
     { name: "image", maxCount: "1" },
   ]),
   controller.postaddBanner
