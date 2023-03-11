@@ -778,12 +778,20 @@ module.exports = {
 
   postaddBanner: async (req, res) => {
     try {
+
+      let main_image = req.files.image[0];
+      
+      let imageFile = await cloudinary.uploader.upload(main_image.path, {
+        folder: "p-mart",
+      });
+      let bannerimage = imageFile;
+
       const { name, description } = req.body;
 
       const banner = new bannerModel({
         name,
         description,
-        image: req.files.image[0],
+        image: bannerimage,
       });
 
       banner.save(async (err, data) => {
