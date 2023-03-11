@@ -102,7 +102,7 @@ module.exports = {
     try {
       const products = await productModel.find().lean();
       res.render("productManagment", { products });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -122,7 +122,7 @@ module.exports = {
     try {
       const categories = await categoryModel.find().lean();
       res.render("categoryManagment", { categories });
-    } catch {
+    } catch (err){
       console.log("ful err");
       console.log(err);
     }
@@ -133,7 +133,7 @@ module.exports = {
       let users = await userModel.find({}, { password: 0 }).lean();
 
       res.render("userManagment", { users });
-    } catch {
+    } catch (err){
       console.log("ful err");
       console.log(err);
     }
@@ -143,7 +143,7 @@ module.exports = {
     try {
       const banners = await bannerModel.find().lean();
       res.render("bannerManagment", { banners });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -180,7 +180,7 @@ module.exports = {
         console.log("second");
         res.render("adminLogin", { error: "Please Enter all fields" });
       }
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -203,7 +203,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -221,7 +221,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -277,7 +277,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch (err){
       console.log("ful err");
       console.log(err);
     }
@@ -295,7 +295,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -313,7 +313,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch (err){
       console.log("ful err");
       console.log(err);
     }
@@ -331,7 +331,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -366,7 +366,7 @@ module.exports = {
     try {
       const categories = await categoryModel.find().lean();
       res.render("addProducts", { categories });
-    } catch {
+    } catch (err){
       console.log("ful err");
       console.log(err);
     }
@@ -438,7 +438,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -456,7 +456,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }
@@ -813,7 +813,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch(err){
       console.log("ful err");
       console.log(err);
     }
@@ -831,7 +831,7 @@ module.exports = {
         .catch((err) => {
           console.log(err);
         });
-    } catch {
+    } catch(err) {
       console.log("ful err");
       console.log(err);
     }

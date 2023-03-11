@@ -47,7 +47,7 @@ module.exports = {
       const categories = await categoryModel.find().lean();
 
       res.render("products", { products, categories });
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -94,7 +94,7 @@ module.exports = {
       } else {
         res.render("userLogin", { error: true });
       }
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -207,7 +207,7 @@ module.exports = {
             });
         }
       }
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -262,7 +262,7 @@ module.exports = {
         const products = await productModel.find().lean();
         res.render("products", { products });
       }
-    } catch {
+    } catch (err){
       res.render("404");
       console.log(err);
     }
@@ -276,7 +276,7 @@ module.exports = {
         .find({ $and: [{ category: name }, { status: "available" }] })
         .lean();
       res.render("products", { products });
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -298,7 +298,7 @@ module.exports = {
         })
         .lean();
       res.render("products", { products });
-    } catch {
+    } catch (err){
       res.render("404");
       console.log(err);
     }
@@ -368,7 +368,7 @@ module.exports = {
       );
 
       res.redirect("/cart");
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -388,7 +388,7 @@ module.exports = {
         }
       );
       res.redirect("/cart");
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -407,7 +407,7 @@ module.exports = {
       );
 
       res.json({ user });
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -436,7 +436,7 @@ module.exports = {
         }
       );
       return res.json({ user });
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -477,7 +477,7 @@ module.exports = {
         }
       );
       res.redirect("back");
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
@@ -498,7 +498,7 @@ module.exports = {
       );
 
       res.redirect("back");
-    } catch {
+    } catch(err){
       res.render("404");
       console.log(err);
     }
