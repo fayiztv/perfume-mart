@@ -4,8 +4,17 @@ const session = require("express-session");
 const adminRouter = require("./routes/adminRouter");
 const userRouter = require("./routes/userRouter");
 const cache = require("./middlewares/cacheControl");
+require('dotenv').config()
 
 const app = express();
+
+
+const cloudinary=require('cloudinary')
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_SECRET
+});
 
 
 app.set("view engine", "ejs");

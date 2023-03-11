@@ -206,7 +206,7 @@
                 <a href="/single-product/<%= item._id %>">
                   <img
                     style="width: 250px; height: 270px; border-radius: 1px"
-                    src="http://localhost:2222/product-images/<%= item.mainImage.filename%>"
+                    src="<%= item.mainImage.url%>"
                     class="img-fluid"
                 /></a>
                 <h5 style="margin: 5px; color: black"><%= item.name %></h5>

@@ -7,6 +7,13 @@ const couponModel = require("../models/coupunModel");
 const orderModel = require("../models/orderModel");
 const bannerModel = require("../models/bannerModel");
 const moment = require("moment");
+const cloudinary = require("cloudinary");
+const { request } = require("express");
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_SECRET,
+});
 
 module.exports = {
   adminLoginPage: (req, res) => {
@@ -19,65 +26,72 @@ module.exports = {
 
   adminHomePage: async (req, res) => {
     try {
-
       if (req.session.admin) {
+        const order = await orderModel.find().lean();
+        const monthlyDataArray = await orderModel.aggregate([
+          { $match: { paid: true } },
+          {
+            $group: {
+              _id: { $month: "$createdAt" },
+              sum: { $sum: "$totalPrice" },
+            },
+          },
+        ]);
 
-        const order = await orderModel.find().lean()
-        const monthlyDataArray = await orderModel.aggregate([{ $match: { paid:true } }, { $group: { _id: { $month: "$createdAt" }, sum: { $sum: "$totalPrice" } } }])
-        
-        console.log("haaaaaaaaaaaaaaaaaaaa",monthlyDataArray);
+        console.log("haaaaaaaaaaaaaaaaaaaa", monthlyDataArray);
 
-        let deliveredOrder = 0
-        let PendingOrder = 0
-        let cancelOrder = 0
+        let deliveredOrder = 0;
+        let PendingOrder = 0;
+        let cancelOrder = 0;
 
-        const user = await userModel.find().lean()
+        const user = await userModel.find().lean();
 
-        let users = user.length
-        let totalOrders = order.length
-        let totalRevenue = 0
-
-
+        let users = user.length;
+        let totalOrders = order.length;
+        let totalRevenue = 0;
 
         let deliveredOrders = order.filter((item) => {
-            if (item.status == 'pending') {
-                PendingOrder++
-            }
+          if (item.status == "pending") {
+            PendingOrder++;
+          }
 
-            if (item.status == 'cancelled') {
-                cancelOrder++
-            }
+          if (item.status == "cancelled") {
+            cancelOrder++;
+          }
 
-            if (item.status == 'delivered') {
-                deliveredOrder++
-                totalRevenue = totalRevenue + item.totalPrice;
-            }
+          if (item.status == "delivered") {
+            deliveredOrder++;
+            totalRevenue = totalRevenue + item.totalPrice;
+          }
 
-            return item.paid
-        })
+          return item.paid;
+        });
 
         let totalDispatch = deliveredOrders.length;
 
+        let monthlyDataObject = {};
 
-        let monthlyDataObject = {}
-        
-        monthlyDataArray.map(item => {
-            monthlyDataObject[item._id] = item.sum
-        })
-    
+        monthlyDataArray.map((item) => {
+          monthlyDataObject[item._id] = item.sum;
+        });
 
-        let monthlyData = []
+        let monthlyData = [];
         for (let i = 1; i <= 12; i++) {
-            monthlyData[i - 1] = monthlyDataObject[i] ?? 0
+          monthlyData[i - 1] = monthlyDataObject[i] ?? 0;
         }
 
-        
-
-        res.render('adminHome', {totalOrders, users, totalRevenue, monthlyData, deliveredOrder, PendingOrder, cancelOrder })
-    } else {
-        res.redirect('/admin/login')
-    }
-
+        res.render("adminHome", {
+          totalOrders,
+          users,
+          totalRevenue,
+          monthlyData,
+          deliveredOrder,
+          PendingOrder,
+          cancelOrder,
+        });
+      } else {
+        res.redirect("/admin/login");
+      }
     } catch (err) {
       console.log("ful err");
       console.log(err);
@@ -360,6 +374,20 @@ module.exports = {
 
   postaddProducts: async (req, res) => {
     try {
+      let main_image = req.files.image[0];
+      let sub_image = req.files.images;
+      let imageFile = await cloudinary.uploader.upload(main_image.path, {
+        folder: "p-mart",
+      });
+      let products = imageFile;
+
+      for (let i in sub_image) {
+        let imageFile = await cloudinary.uploader.upload(sub_image[i].path, {
+          folder: "p-mart",
+        });
+        sub_image[i] = imageFile;
+      }
+
       const { name, category, quantity, price, brand, description, mrp } =
         req.body;
 
@@ -371,8 +399,8 @@ module.exports = {
         brand,
         description,
         mrp,
-        mainImage: req.files.image[0],
-        sideImage: req.files.images,
+        mainImage:products,
+        sideImage:sub_image
       });
 
       product.save(async (err, data) => {
@@ -449,6 +477,19 @@ module.exports = {
 
   postEditProduct: async (req, res) => {
     try {
+      let main_image = req.files.image[0];
+      let sub_image = req.files.images;
+      let imageFile = await cloudinary.uploader.upload(main_image.path, {
+        folder: "p-mart",
+      });
+      let products = imageFile;
+
+      for (let i in sub_image) {
+        let imageFile = await cloudinary.uploader.upload(sub_image[i].path, {
+          folder: "p-mart",
+        });
+        sub_image[i] = imageFile;
+      }
       const { name, category, quantity, mrp, brand, price, description, _id } =
         req.body;
 
@@ -463,8 +504,8 @@ module.exports = {
             price,
             mrp,
             description,
-            mainImage: req.files.image[0],
-            sideImage: req.files.images,
+            mainImage: products,
+            sideImage: sub_image,
           },
         });
 
@@ -482,7 +523,7 @@ module.exports = {
             mrp,
             price,
             description,
-            sideImage: req.files.images,
+            sideImage: sub_image,
           },
         });
 
@@ -500,7 +541,7 @@ module.exports = {
             mrp,
             price,
             description,
-            mainImage: req.files.image[0],
+            mainImage: products,
           },
         });
 

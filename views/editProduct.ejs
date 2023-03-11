@@ -194,7 +194,7 @@
                                         <label>Main IMage</label>
                                         <input type="file" name="image" accept="image/*" class="form-control p_input">
                                       </div>
-                                      <img src="http://localhost:2222/product-images/<%= product.mainImage.filename%>" alt="" style="width: 100px;" />
+                                      <img src="<%= product.mainImage.url%>" alt="" style="width: 100px;" />
                                   </div>
 
                                   <div class="col-md-6">     
@@ -204,7 +204,7 @@
                                       </div>
                                       <% product.sideImage.forEach(item => { %>
                                         <div id="multiImage">
-                                            <img src="http://localhost:2222/product-images/<%= item.filename%>" style="width: 100px;" alt="" />
+                                            <img src="<%= item.url%>" style="width: 100px;" alt="" />
                                         </div>
                                         <% }) %>
                                   </div>
@@ -212,7 +212,7 @@
                                   <div class="col-md-12">     
                                     <div class="form-group">
                                         <label>Description</label>
-                                       <textarea class="form-control p_input" value="<%=product.description %>" name="description" rows="4"form="addProductsForm" placeholder="Description"></textarea>
+                                       <input class="form-control p_input" value="<%=product.description %>" name="description" rows="4"form="addProductsForm" placeholder="Description"></input>
                                       </div>
                                   </div>
      
