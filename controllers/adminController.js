@@ -38,7 +38,6 @@ module.exports = {
           },
         ]);
 
-        console.log("haaaaaaaaaaaaaaaaaaaa", monthlyDataArray);
 
         let deliveredOrder = 0;
         let PendingOrder = 0;
