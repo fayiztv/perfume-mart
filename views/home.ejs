@@ -123,10 +123,10 @@
   </header>
   <!-- Header part end-->
   <!-- banner part start-->
-  <section class="banner_part mb-0">
+  <!-- <section class="banner_part mb-0">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-6 col-12">
           <div class="banner_text">
             <div class="banner_text_iner">
               <% banner.forEach((item,index)=>{ %>
@@ -136,17 +136,55 @@
             </div>
           </div>
         </div>
+        <div class="col-md-6 col-12">
+
+          <div class="banner_img" style="margin-bottom: 0px">
+            <img
+            style="height: 500px; width: 800px"
+            src="<%= item.image.secure_url%>"
+            alt="#"
+            class="img-fluid"
+            />
+            
+          </div>
+        </div>
       </div>
     </div>
-    <div class="banner_img" style="margin-bottom: 0px">
-      <img
-        style="height: 500px; width: 800px"
-        src="<%= item.image.secure_url%>"
-        alt="#"
-        class="img-fluid"
-      />
-    </div>
+    
     <%} ) %>
+  </section> -->
+  <section>
+    <div class="container">
+        <div class="row d-flex align-items-center">
+
+      <% banner.forEach((item,index)=>{ %>
+      <div class="col-md-6 col-12">
+        <div class="banner_text">
+          <div class="banner_text_iner">
+            
+            <h1><%= item.name %></h1>
+            <p><%=item.description %></p>
+            <a href="/products" class="btn_1">shop now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+
+        <div class="banner_img mt-5" style="margin-bottom: 0px; object-fit: contain;">
+          <img
+          style="height: 500px; width: 800px"
+          src="<%= item.image.secure_url%>"
+          alt="#"
+          class="img-fluid"
+          />
+          
+        </div>
+      </div>
+      <%} ) %>
+    </div>
+
+
+    </div>
   </section>
 
   <!-- product list start-->
