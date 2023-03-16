@@ -56,7 +56,7 @@ router.get("/add-address", controller.getAddAddress);
 router.post("/add-address", controller.postAddress);
 router.get("/delete-address/:id", controller.deleteAdderess);
 router.get("/edit-address/:id", controller.getEditAddress);
-router.post("/edit-address", controller.postEditAddress);
+router.post("/edit-address", controller.postEditAddress); 
 
 // checkout page
 router.get("/product-checkout", controller.getcheckout);

@@ -733,7 +733,7 @@ module.exports = {
         }
 
         if (item.status == "delivered") {
-          totalRevenue = totalRevenue + item.orderItems.price;
+          totalRevenue = totalRevenue + item.totalPrice;
           totalDelivered++;
           return item.paid;
         }

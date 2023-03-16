@@ -10,8 +10,8 @@ module.exports = function SendOtp(email,otp){
                     port: 465,
                     secure: true,
                     auth: {
-                      user: "xcaze797@gmail.com",
-                      pass: "bdccjxdvfitjlmxr",
+                      user:process.env.EMAIL,
+                      pass:process.env.PASSWORD,
                     },
                   });
 

@@ -636,7 +636,7 @@ module.exports = {
 
   postCheckout: async (req, res) => {
     try {
-      console.log(req.body, "8888888888888888888888");
+      
 
       const _id = req.session.user.id;
 
@@ -648,7 +648,7 @@ module.exports = {
         return item.id;
       });
       console.log(cartList);
-      // console.log(cart)
+    
 
       const product = await productModel
         .find({ _id: { $in: cartList } })
@@ -741,7 +741,7 @@ module.exports = {
         res.render("orderSucsess");
       }
     } catch (error) {
-      console.log("error");
+      res.render("404");
       console.log(error);
     }
   },
