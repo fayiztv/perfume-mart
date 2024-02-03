@@ -107,7 +107,12 @@
     <div
       class="container-fluid d-flex flex-column justify-content-center align-items-center login-main"
     >
-      <form  class="login-container" id="loginForm" method="post" action="/login">
+      <form
+        class="login-container"
+        id="loginForm"
+        method="post"
+        action="/login"
+      >
         <h2 style="color: rgb(0, 0, 0)">User Login</h2>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label"
@@ -137,8 +142,24 @@
         <% } %> <% if (typeof err !== "undefined") { %>
         <p style="color: red; margin-left: 20px"><%= err %></p>
         <% } %>
-        <button type="submit" class="btn btn-primary login-btn">Submit</button>
-        <button type="button" class="btn btn-primary login-btn" id="demoLogin">Demo login</button>
+        <button type="submit" class="btn btn-primary login-btn">
+          Submit
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+            style="display: none"
+          ></span>
+        </button>
+        <button type="button" class="btn btn-primary login-btn" id="demoLogin">
+          Demo login
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+            style="display: none"
+          ></span>
+        </button>
         <div class="container d-flex justify-content-center mt-3"></div>
       </form>
       <span style="color: rgb(31, 110, 156)"
@@ -160,14 +181,40 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('demoLogin').addEventListener('click', function() {
-        document.getElementById('exampleInputEmail1').value = 'f@gmail.com';
-        document.getElementById('exampleInputPassword1').value = '1111';
-        document.getElementById('loginForm').submit();
-      });
+   document.addEventListener("DOMContentLoaded", function() {
+  const emailInput = document.getElementById("exampleInputEmail1");
+  const passwordInput = document.getElementById("exampleInputPassword1");
+  const submitButton = document.querySelector('.login-btn[type="submit"]');
+
+  function toggleSubmitButtonState() {
+    submitButton.disabled = !emailInput.value || !passwordInput.value;
+  }
+
+  toggleSubmitButtonState();
+
+  emailInput.addEventListener("input", toggleSubmitButtonState);
+  passwordInput.addEventListener("input", toggleSubmitButtonState);
+
+  submitButton.addEventListener("click", function(event) {
+    const spinner = this.querySelector(".spinner-border");
+    spinner.style.display = "inline-block";
+  });
+
+
+      document
+        .getElementById("demoLogin")
+        .addEventListener("click", function (event) {
+          const spinner = this.querySelector(".spinner-border");
+          spinner.style.display = "inline-block";
+          this.disabled = true;
+
+          document.getElementById("exampleInputEmail1").value = "f@gmail.com";
+          document.getElementById("exampleInputPassword1").value = "1111";
+          document.getElementById("loginForm").submit();
+        });
     });
   </script>
+  
   <script
     type="module"
     src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
